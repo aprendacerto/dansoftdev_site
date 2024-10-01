@@ -1,0 +1,40 @@
+version: '3.7'
+
+networks:
+  dansoftdev_network_internal:
+    external: true
+    name: dansoftdev_network_internal
+    ipam:
+      driver: default
+      config:
+        - subnet: 172.22.0.0/16
+
+services:
+
+  local-site.dansoftdev.com:
+    image: boompe/php7.3-apache-buster:latest
+#    build:
+#      context: ../dansoftdev_site
+#      dockerfile: ./docker/site/Dockerfile
+    container_name: local-site
+    depends_on:
+#      - traefik
+#      - rabbitmq.dansoftdev.com
+      - local-site.dansoftdev.com-composer
+#      - site_db.dansoftdev.com-migration
+#      - elasticsearch.dansoftdev.com
+    env_file:
+      - ../dansoftdev_site/env/.env
+    volumes:
+      - ../dansoftdev_site/code/site/:/var/www/html/
+      - ../dansoftdev_site/docker/site/apache/vhost.conf:/etc/apache2/sites-available/vhost.conf
+    labels:
+      - traefik.enable=true
+      - traefik.frontend.rule=Host:local-site.dansoftdev.com
+      - traefik.frontend.priority=2
+      - traefik.docker.network=dansoftdev_network_internal
+      - traefik.port=443
+      - traefik.protocol=https
+    working_dir: /var/www/html/
+    networks:
+      - dansoftdev_network_internal
