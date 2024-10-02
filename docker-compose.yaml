@@ -1,0 +1,24 @@
+version: '3.9'
+
+networks:
+  dansoftdev_network_internal:
+    external: true
+
+services:
+
+  local.dansoftdev.com:
+    image: boompe/php7.3-apache-buster:latest
+#    build:
+#      context: ../dansoftdev_fact
+#      dockerfile: ./docker/fact/Dockerfile
+    container_name: local-dansoftdev
+    env_file:
+      - ./env/.env
+    ports:
+      - 80:80
+    volumes:
+      - ./code/site/:/var/www/html/
+      - ./docker/site/apache/vhost.conf:/etc/apache2/sites-available/vhost.conf
+    working_dir: /var/www/html/
+    networks:
+      - dansoftdev_network_internal
