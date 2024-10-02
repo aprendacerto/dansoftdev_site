@@ -1,0 +1,522 @@
+<html><head><base href="https://dansoftdev.com/"><title>DanSoftDev - Expert DevOps & Cloud Solutions</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<style>
+    body, html {
+        font-family: 'Roboto', sans-serif;
+        margin: 0;
+        padding: 0;
+        background-color: #f5f7fa;
+        color: #333;
+        height: 100%;
+    }
+    .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 20px;
+    }
+    header {
+        padding: 1rem 0;
+        position: fixed;
+        width: 100%;
+        top: 0;
+        z-index: 1000;
+        transition: background-color 0.3s ease, color 0.3s ease;
+    }
+    header.transparent {
+        background-color: transparent;
+        color: white;
+    }
+    header.solid {
+        background-color: white;
+        color: #2c3e50;
+        box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    }
+    .header-content {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+    nav ul {
+        list-style-type: none;
+        padding: 0;
+        margin: 0;
+        display: flex;
+        align-items: center;
+    }
+    nav ul li {
+        margin-left: 1.5rem;
+    }
+    nav ul li a {
+        text-decoration: none;
+        font-weight: 500;
+        transition: color 0.3s ease;
+    }
+    header.transparent nav ul li a {
+        color: white;
+    }
+    header.solid nav ul li a {
+        color: #2c3e50;
+    }
+    nav ul li a:hover {
+        color: #3498db;
+    }
+    main {
+        padding: 2rem 0;
+        margin-top: 60px;
+    }
+    h1, h2 {
+        color: #2c3e50;
+    }
+    .cta-button {
+        display: inline-block;
+        background-color: #e74c3c;
+        color: white;
+        padding: 0.75rem 1.5rem;
+        text-decoration: none;
+        border-radius: 5px;
+        font-weight: bold;
+        margin-top: 1rem;
+        transition: background-color 0.3s ease;
+    }
+    .cta-button:hover {
+        background-color: #c0392b;
+    }
+    .banner {
+        width: 100%;
+        height: 70vh;
+        position: relative;
+        overflow: hidden;
+        background-image: url('https://images.unsplash.com/photo-1600880292203-757bb62b4baf?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1920&q=80');
+        background-size: cover;
+        background-position: center;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    .banner::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: rgba(44, 62, 80, 0.7);
+    }
+    .banner-content {
+        text-align: center;
+        color: white;
+        z-index: 10;
+        width: 80%;
+        max-width: 800px;
+    }
+    .banner h2 {
+        color: white;
+        font-size: 3rem;
+        margin-bottom: 1.5rem;
+        text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+    }
+    .banner p {
+        font-size: 1.4rem;
+        margin-bottom: 2.5rem;
+        text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
+    }
+    #content {
+        max-width: 800px;
+        margin: 0 auto;
+        padding: 2rem;
+        background-color: white;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        border-radius: 8px;
+    }
+    .solutions-section {
+        padding: 4rem 0;
+        background-color: #f9f9f9;
+    }
+    .solutions-section h2 {
+        text-align: center;
+        font-size: 2.5rem;
+        margin-bottom: 1rem;
+        color: #2c3e50;
+    }
+    .solutions-section p {
+        text-align: center;
+        font-size: 1.2rem;
+        color: #7f8c8d;
+        max-width: 800px;
+        margin: 0 auto 3rem;
+    }
+    .solutions-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 2rem;
+        padding: 2rem 0;
+    }
+    .solution-item {
+        text-align: center;
+        padding: 1rem;
+        background-color: #fff;
+        border-radius: 8px;
+        box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    .solution-item:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    }
+    .solution-item img {
+        width: 80px;
+        height: 80px;
+        margin-bottom: 1rem;
+    }
+    .solution-item h3 {
+        margin: 0;
+        color: #2c3e50;
+    }
+    .contact-button {
+        padding: 0.5rem 1rem;
+        border-radius: 5px;
+        text-decoration: none;
+        transition: background-color 0.3s ease, color 0.3s ease;
+    }
+    header.transparent .contact-button {
+        background-color: white;
+        color: black;
+    }
+    header.solid .contact-button {
+        background-color: black;
+        color: white;
+    }
+    .contact-button:hover {
+        opacity: 0.9;
+    }
+    .language-button {
+        background-color: transparent;
+        border: 1px solid currentColor;
+        padding: 0.3rem 0.6rem;
+        border-radius: 3px;
+        cursor: pointer;
+        transition: background-color 0.3s ease, color 0.3s ease;
+    }
+    header.transparent .language-button {
+        color: white;
+    }
+    header.solid .language-button {
+        color: #2c3e50;
+    }
+    .language-button:hover {
+        background-color: rgba(255, 255, 255, 0.1);
+    }
+    .services-section {
+        background-color: #ecf0f1;
+        padding: 4rem 0;
+        margin-top: 2rem;
+    }
+    .services-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 2rem;
+    }
+    .service-item {
+        background-color: white;
+        padding: 2rem;
+        border-radius: 8px;
+        box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        transition: transform 0.3s ease;
+        text-align: center;
+    }
+    .service-item:hover {
+        transform: translateY(-5px);
+    }
+    .service-item h3 {
+        color: #2c3e50;
+        margin-top: 0;
+    }
+    .service-item p {
+        color: #7f8c8d;
+        text-align: left;
+    }
+    .service-icon {
+        font-size: 3rem;
+        margin-bottom: 1rem;
+        color: #3498db;
+    }
+    .devops-consulting {
+        background-color: #3498db;
+        color: white;
+        padding: 4rem 0;
+        text-align: center;
+    }
+    .devops-consulting h2 {
+        color: white;
+        font-size: 2.5rem;
+        margin-bottom: 1.5rem;
+    }
+    .devops-consulting p {
+        font-size: 1.2rem;
+        max-width: 800px;
+        margin: 0 auto 2rem;
+    }
+    .devops-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 2rem;
+        max-width: 1200px;
+        margin: 0 auto;
+    }
+    .devops-item {
+        background-color: rgba(255, 255, 255, 0.1);
+        padding: 2rem;
+        border-radius: 8px;
+        transition: transform 0.3s ease;
+    }
+    .devops-item:hover {
+        transform: translateY(-5px);
+    }
+    .devops-item i {
+        font-size: 3rem;
+        margin-bottom: 1rem;
+    }
+    .devops-item h3 {
+        margin-top: 0;
+    }
+    .logo {
+        font-size: 1.5rem;
+        font-weight: bold;
+        text-decoration: none;
+        transition: color 0.3s ease;
+    }
+    header.transparent .logo {
+        color: white;
+    }
+    header.solid .logo {
+        color: #0D3671;
+    }
+</style>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <header class="transparent">
+        <div class="container">
+            <div class="header-content">
+                <a href="/" class="logo">DanSoftDev</a>
+                <nav>
+                    <ul>
+                        <li><a href="/">Home</a></li>
+                        <li><a href="/solutions">Solutions</a></li>
+                        <li><a href="/contact">Contact</a></li>
+                        <li><a href="/contact" class="contact-button">Contact Us</a></li>
+                        <li><button class="language-button" onclick="toggleLanguage()">EN</button></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </header>
+    <div class="banner">
+        <div class="banner-content">
+            <h2>Empowering Your Cloud DevOps Journey</h2>
+            <p>Our expert team works hand-in-hand with customers to deliver cutting-edge cloud solutions</p>
+            <a href="/solutions" class="cta-button">Explore Our Solutions</a>
+        </div>
+    </div>
+    <section class="devops-consulting">
+        <div class="container">
+            <h2>Unleash Unmatched Efficiency With DevOps Consulting</h2>
+            <p>Transform your development and operations with our expert DevOps consulting services. We help you streamline processes, automate workflows, and achieve continuous delivery for faster, more reliable software deployments.</p>
+            <div class="devops-grid">
+                <div class="devops-item">
+                    <i class="fas fa-rocket"></i>
+                    <h3>Accelerate Time-to-Market</h3>
+                    <p>Implement CI/CD pipelines to speed up your development cycles and deploy faster.</p>
+                </div>
+                <div class="devops-item">
+                    <i class="fas fa-shield-alt"></i>
+                    <h3>Enhanced Security</h3>
+                    <p>Integrate security practices throughout your development lifecycle for robust protection.</p>
+                </div>
+                <div class="devops-item">
+                    <i class="fas fa-chart-line"></i>
+                    <h3>Improved Scalability</h3>
+                    <p>Design infrastructure that scales effortlessly with your business growth.</p>
+                </div>
+                <div class="devops-item">
+                    <i class="fas fa-sync-alt"></i>
+                    <h3>Continuous Improvement</h3>
+                    <p>Foster a culture of constant learning and optimization in your teams.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="solutions-section">
+        <div class="container">
+            <h2>DevOps Tools & Technologies</h2>
+            <p>Explore our comprehensive suite of cutting-edge DevOps tools and technologies designed to streamline your development process, enhance collaboration, and accelerate your digital transformation journey.</p>
+            <div class="solutions-grid">
+                <div class="solution-item">
+                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/kubernetes/kubernetes-plain.svg" alt="Kubernetes logo">
+                    <h3>Kubernetes</h3>
+                </div>
+                <div class="solution-item">
+                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/amazonwebservices/amazonwebservices-original.svg" alt="AWS logo">
+                    <h3>AWS</h3>
+                </div>
+                <div class="solution-item">
+                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/googlecloud/googlecloud-original.svg" alt="GCP logo">
+                    <h3>GCP</h3>
+                </div>
+                <div class="solution-item">
+                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/terraform/terraform-original.svg" alt="Terraform logo">
+                    <h3>Terraform</h3>
+                </div>
+                <div class="solution-item">
+                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/ansible/ansible-original.svg" alt="Ansible logo">
+                    <h3>Ansible</h3>
+                </div>
+                <div class="solution-item">
+                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/linux/linux-original.svg" alt="Linux logo">
+                    <h3>Linux</h3>
+                </div>
+                <div class="solution-item">
+                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postgresql/postgresql-original.svg" alt="Database cluster logo">
+                    <h3>Database Clusters</h3>
+                </div>
+                <div class="solution-item">
+                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tensorflow/tensorflow-original.svg" alt="AI Training logo">
+                    <h3>AI Training</h3>
+                </div>
+                <div class="solution-item">
+                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/docker/docker-original.svg" alt="Docker logo">
+                    <h3>Docker</h3>
+                </div>
+                <div class="solution-item">
+                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/jenkins/jenkins-original.svg" alt="Jenkins logo">
+                    <h3>Jenkins</h3>
+                </div>
+                <div class="solution-item">
+                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/prometheus/prometheus-original.svg" alt="Prometheus logo">
+                    <h3>Prometheus</h3>
+                </div>
+                <div class="solution-item">
+                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/grafana/grafana-original.svg" alt="Grafana logo">
+                    <h3>Grafana</h3>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="services-section">
+        <div class="container">
+            <h2>Our Services</h2>
+            <div class="services-grid">
+                <div class="service-item">
+                    <i class="fas fa-users service-icon"></i>
+                    <h3>Outsourcing</h3>
+                    <p>Leverage our expert team to augment your IT capabilities. We provide skilled professionals who seamlessly integrate with your existing workforce, bringing specialized knowledge and experience to your projects.</p>
+                </div>
+                <div class="service-item">
+                    <i class="fas fa-cogs service-icon"></i>
+                    <h3>Implementation</h3>
+                    <p>From strategy to execution, we guide you through the entire process of implementing DevOps and cloud solutions. Our team ensures smooth integration of new technologies and practices into your existing infrastructure.</p>
+                </div>
+                <div class="service-item">
+                    <i class="fas fa-chart-line service-icon"></i>
+                    <h3>Cost Reduction</h3>
+                    <p>Optimize your IT spending with our cost-effective solutions. We analyze your current setup, identify areas for improvement, and implement strategies to reduce operational costs while enhancing efficiency.</p>
+                </div>
+                <div class="service-item">
+                    <i class="fas fa-server service-icon"></i>
+                    <h3>Infrastructure Management</h3>
+                    <p>Let us handle the complexities of your IT infrastructure. Our comprehensive management services cover monitoring, maintenance, and optimization of your systems, ensuring high availability and performance.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    <main id="content">
+        <!-- Content will be dynamically loaded here -->
+    </main>
+    <script>
+        const content = document.getElementById('content');
+        const pages = {
+            '/': `
+                <h2>Welcome to DanSoftDev</h2>
+                <p>We are your trusted partner in DevOps and cloud solutions. Our specialized team of experts is dedicated to optimizing your IT infrastructure and accelerating your digital transformation journey.</p>
+                <a href="/solutions" class="cta-button">Explore Our Solutions</a>
+            `,
+            '/solutions': `
+                <h2>Our Solutions</h2>
+                <ul>
+                    <li>DevOps Consulting and Implementation</li>
+                    <li>Cloud Migration and Optimization</li>
+                    <li>Continuous Integration and Deployment (CI/CD)</li>
+                    <li>Infrastructure as Code (IaC)</li>
+                    <li>Kubernetes and Container Orchestration</li>
+                    <li>Monitoring and Logging Solutions</li>
+                </ul>
+                <a href="/contact" class="cta-button">Contact Us for a Consultation</a>
+            `,
+            '/contact': `
+                <h2>Contact Us</h2>
+                <p>Ready to take your IT infrastructure to the next level? Get in touch with our team of experts today.</p>
+                <form>
+                    <label for="name">Name:</label><br>
+                    <input type="text" id="name" name="name" required><br>
+                    <label for="email">Email:</label><br>
+                    <input type="email" id="email" name="email" required><br>
+                    <label for="message">Message:</label><br>
+                    <textarea id="message" name="message" required></textarea><br>
+                    <input type="submit" value="Send" class="cta-button">
+                </form>
+            `
+        };
+
+        function loadContent(path) {
+            content.innerHTML = pages[path] || 'Page not found';
+        }
+
+        window.addEventListener('popstate', () => {
+            loadContent(window.location.pathname);
+        });
+
+        document.querySelectorAll('nav a').forEach(link => {
+            link.addEventListener('click', (e) => {
+                e.preventDefault();
+                const path = e.target.getAttribute('href');
+                history.pushState(null, '', path);
+                loadContent(path);
+            });
+        });
+
+        loadContent(window.location.pathname);
+
+        function toggleLanguage() {
+            const langButton = document.querySelector('.language-button');
+            if (langButton.textContent === 'EN') {
+                langButton.textContent = 'ES';
+                // Here you would implement the logic to change the website's language to Spanish
+                alert('Cambiando el idioma a Español');
+            } else {
+                langButton.textContent = 'EN';
+                // Here you would implement the logic to change the website's language to English
+                alert('Changing language to English');
+            }
+        }
+
+        // New script for header transparency and color changes
+        const header = document.querySelector('header');
+        const banner = document.querySelector('.banner');
+
+        function checkHeaderTransparency() {
+            const bannerBottom = banner.offsetTop + banner.offsetHeight;
+            if (window.pageYOffset > bannerBottom - header.offsetHeight) {
+                header.classList.remove('transparent');
+                header.classList.add('solid');
+            } else {
+                header.classList.add('transparent');
+                header.classList.remove('solid');
+            }
+        }
+
+        window.addEventListener('scroll', checkHeaderTransparency);
+        window.addEventListener('resize', checkHeaderTransparency);
+        checkHeaderTransparency(); // Initial check
+    </script>
+</body></html>
